@@ -19,6 +19,7 @@
 		44B0DA6F29EC7EE5007FD80F /* TechniqueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B0DA6E29EC7EE5007FD80F /* TechniqueVC.swift */; };
 		44B0DA7129EC7F1C007FD80F /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B0DA7029EC7F1C007FD80F /* InfoVC.swift */; };
 		44B0DA7329EC7F3B007FD80F /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B0DA7229EC7F3B007FD80F /* SettingsVC.swift */; };
+		44B0DA7529EDC60A007FD80F /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B0DA7429EDC60A007FD80F /* SearchVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		44B0DA6E29EC7EE5007FD80F /* TechniqueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechniqueVC.swift; sourceTree = "<group>"; };
 		44B0DA7029EC7F1C007FD80F /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
 		44B0DA7229EC7F3B007FD80F /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		44B0DA7429EDC60A007FD80F /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				44B0DA6E29EC7EE5007FD80F /* TechniqueVC.swift */,
 				44B0DA7029EC7F1C007FD80F /* InfoVC.swift */,
 				44B0DA7229EC7F3B007FD80F /* SettingsVC.swift */,
+				44B0DA7429EDC60A007FD80F /* SearchVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44B0DA7529EDC60A007FD80F /* SearchVC.swift in Sources */,
 				44B0DA6F29EC7EE5007FD80F /* TechniqueVC.swift in Sources */,
 				44B0DA6A29EC7E43007FD80F /* TabBarController.swift in Sources */,
 				44B0DA6D29EC7E84007FD80F /* GunVC.swift in Sources */,

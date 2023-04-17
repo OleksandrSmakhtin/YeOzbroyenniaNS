@@ -26,15 +26,19 @@ class TabBarController: UITabBarController {
         vc2.tabBarItem.imageInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         vc2.tabBarItem.title = "Техніка"
         
-        let vc3 = UINavigationController(rootViewController: InfoVC())
-        vc3.tabBarItem.image = UIImage(systemName: "list.bullet.clipboard")
-        vc3.tabBarItem.title = "Посібник"
+        let vc3 = UINavigationController(rootViewController: SearchVC())
+        vc3.tabBarItem.image = UIImage(systemName: "magnifyingglass")
+        vc3.tabBarItem.title = "Пошук"
         
-        let vc4 = UINavigationController(rootViewController: SettingsVC())
-        vc4.tabBarItem.image = UIImage(systemName: "gearshape")
-        vc4.tabBarItem.title = "Налаштування"
+        let vc4 = UINavigationController(rootViewController: InfoVC())
+        vc4.tabBarItem.image = UIImage(systemName: "list.bullet.clipboard")
+        vc4.tabBarItem.title = "Посібник"
         
-        setViewControllers([vc1, vc2, vc3, vc4], animated: true)
+        let vc5 = UINavigationController(rootViewController: SettingsVC())
+        vc5.tabBarItem.image = UIImage(systemName: "gearshape")
+        vc5.tabBarItem.title = "Налаштування"
+        
+        setViewControllers([vc1, vc2, vc3, vc4, vc5], animated: true)
     }
     
     //MARK: - Configure nav bar
