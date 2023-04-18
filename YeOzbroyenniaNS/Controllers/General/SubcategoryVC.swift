@@ -1,26 +1,35 @@
 //
-//  SearchVC.swift
+//  SubcategoryVC.swift
 //  YeOzbroyenniaNS
 //
-//  Created by Oleksandr Smakhtin on 17.04.2023.
+//  Created by Oleksandr Smakhtin on 18.04.2023.
 //
 
 import UIKit
 
-class SearchVC: UIViewController {
+class SubcategoryVC: UIViewController {
     
+    //MARK: - UI Objects
     private let bgImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "lightBg")
         return imageView
     }()
 
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+
+        // Do any additional setup after loading the view.
     }
     
-
+    //MARK: - viewDidLayoutSubviews
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        bgImageView.frame = view.frame
+    }
+    
+    
     /*
     // MARK: - Navigation
 

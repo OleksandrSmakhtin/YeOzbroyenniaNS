@@ -1,17 +1,17 @@
 //
-//  GunVC.swift
+//  ListVC.swift
 //  YeOzbroyenniaNS
 //
-//  Created by Oleksandr Smakhtin on 16.04.2023.
+//  Created by Oleksandr Smakhtin on 18.04.2023.
 //
 
 import UIKit
 
-class GunVC: UIViewController {
+class ElementVC: UIViewController {
     
     //MARK: - Data
-    let categories = Category.shared.getGunCategories()
-
+    public var element = Element(subcategory: "", items: [""])
+    
     //MARK: - UI Objects
     private let topSeparatorView: UIView = {
         let view = UIView()
@@ -20,12 +20,12 @@ class GunVC: UIViewController {
         return view
     }()
     
-    private let gunsTable: UITableView = {
+    private let listTable: UITableView = {
         let table = UITableView()
+        table.backgroundColor = .clear
         table.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
         table.showsVerticalScrollIndicator = false
         table.separatorStyle = .none
-        table.backgroundColor = .clear
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
@@ -42,16 +42,13 @@ class GunVC: UIViewController {
         // bg color
         view.backgroundColor = .systemBackground
         // configure nav bar
-        configureNavBar()
+        configureNavBar(with: element.subcategory)
         // add subviews
         addSubviews()
         // apply constraints
         applyConstraints()
         // apply delegates
         applyTableDelegates()
-        
-//        let json = DataPersistance.shared.encodeData()
-//        FileHandler.shared.saveJson(json: json)
         
     }
     
@@ -65,7 +62,7 @@ class GunVC: UIViewController {
     private func addSubviews() {
         view.addSubview(bgImageView)
         view.addSubview(topSeparatorView)
-        view.addSubview(gunsTable)
+        view.addSubview(listTable)
     }
     
     //MARK: - Apply constraints
@@ -74,81 +71,71 @@ class GunVC: UIViewController {
         let topSeparatorViewConstraints = [
             topSeparatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             topSeparatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            topSeparatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            topSeparatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 1),
             topSeparatorView.heightAnchor.constraint(equalToConstant: 1)
         ]
         
-        // gunsTable constraints
-        let gunsTableConstraints = [
-            gunsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            gunsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            gunsTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor),
-            gunsTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        // listTable constraints
+        let listTableConstraints = [
+            listTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            listTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            listTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor),
+            listTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ]
         
         // activate constraints
         NSLayoutConstraint.activate(topSeparatorViewConstraints)
-        NSLayoutConstraint.activate(gunsTableConstraints)
+        NSLayoutConstraint.activate(listTableConstraints)
     }
-    
     
     
     //MARK: - Congifure nav bar
-    private func configureNavBar() {
-        let titleLbl: UILabel = {
-            let lbl = UILabel()
-            lbl.text = "Зброя"
-            lbl.textColor = .label
-            lbl.font = UIFont.systemFont(ofSize: 35, weight: .bold)
-            return lbl
-        }()
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLbl)
-//        title = "Зброя"
-//        navigationController?.navigationBar.prefersLargeTitles = true
+    public func configureNavBar(with title: String) {
+        self.title = title
+        navigationController?.navigationBar.tintColor = .label
     }
 }
 
+
 //MARK: - Lifecycle
-extension GunVC {
-    //MARK: - viewWillAppear
+extension ElementVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
 }
 
 
+
 //MARK: - UITableViewDelegate & DataSource
-extension GunVC: UITableViewDelegate, UITableViewDataSource {
+extension ElementVC: UITableViewDelegate, UITableViewDataSource {
     // apply table delegates
     private func applyTableDelegates() {
-        gunsTable.delegate = self
-        gunsTable.dataSource = self
+        listTable.delegate = self
+        listTable.dataSource = self
     }
     
     // nubers of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return element.items.count
     }
     
     // cell for row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier) as? ListCell else { return UITableViewCell() }
-        
-        
-        cell.configure(with: categories[indexPath.row])
-        
+        cell.configure(with: element.items[indexPath.row])
         return cell
     }
     
     // did select row
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
-        let model = categories[indexPath.row]
-        let element = DataManager.shared.getElements(by: model)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
-        let vc = ElementVC()
-        vc.element = element
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Зброя", style: .plain, target: nil, action: nil)
+        let itemTitle = element.items[indexPath.row]
+
+        let item = DataManager.shared.getGunItem(by: itemTitle)
+        
+        let vc = ItemVC()
+        vc.item = item
         navigationController?.pushViewController(vc, animated: true)
         
     }

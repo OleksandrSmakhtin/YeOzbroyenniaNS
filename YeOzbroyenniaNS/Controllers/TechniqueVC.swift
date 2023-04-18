@@ -8,6 +8,12 @@
 import UIKit
 
 class TechniqueVC: UIViewController {
+    
+    private let bgImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "lightBg")
+        return imageView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
