@@ -15,19 +15,26 @@ class SettingsVC: UIViewController {
         return imageView
     }()
 
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        // add subviews
+        addSubviews()
+        
+    }
+    
+    //MARK: - viewDidLayout
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        bgImageView.frame = view.frame
+    }
+    
+    //MARK: - Add subviews
+    private func addSubviews() {
+        view.addSubview(bgImageView)
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

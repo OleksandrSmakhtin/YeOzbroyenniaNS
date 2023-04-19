@@ -8,13 +8,22 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-
+    
+    //MARK: - UI Objects
+    private let bottomSeparatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray.withAlphaComponent(0.5)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         // bg color
         view.backgroundColor = .systemBackground
         // configure nav bar
-        configureNavBar()
+        configureTabBar()
         
         let vc1  = UINavigationController(rootViewController: GunVC())
         vc1.tabBarItem.image = UIImage(named: "gunIcon")
@@ -42,10 +51,25 @@ class TabBarController: UITabBarController {
     }
     
     //MARK: - Configure nav bar
-    private func configureNavBar() {
+    private func configureTabBar() {
         tabBar.tintColor = .label
+        //tabBar.addSubview(bottomSeparatorView)
+        //applyConstraints()
     }
     
+    //MARK: - Apply constraints
+    private func applyConstraints() {
+        // bottomSeparatorView constraints
+        let bottomSeparatorViewConstraints = [
+            bottomSeparatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomSeparatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomSeparatorView.heightAnchor.constraint(equalToConstant: 1),
+            bottomSeparatorView.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -1)
+        ]
+        
+        // activate constraints
+        NSLayoutConstraint.activate(bottomSeparatorViewConstraints)
+    }
 
 
 }

@@ -21,12 +21,13 @@ class ListCell: UITableViewCell {
         return lbl
     }()
     
-    private let circleContentView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white.withAlphaComponent(0.1)
-        view.layer.cornerRadius = 5
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    private let disclousereIndicator: UIImageView = {
+        let imageView = UIImageView()
+        var image = UIImage(named: "arrow", in: nil, with: UIImage.SymbolConfiguration(pointSize: 4))
+        image = image?.withTintColor(.label, renderingMode: .automatic)
+        imageView.image = image
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     //MARK: - Init
@@ -49,31 +50,29 @@ class ListCell: UITableViewCell {
     
     //MARK: - Add subviews
     private func addSubviews() {
-        contentView.addSubview(circleContentView)
-        circleContentView.addSubview(titleLbl)
+        contentView.addSubview(titleLbl)
+        contentView.addSubview(disclousereIndicator)
     }
     
     //MARK: - Apply constraints
     private func applyConstraints() {
-        // circleContentView constraints
-        let circleContentViewConstraints = [
-            circleContentView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            circleContentView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            circleContentView.heightAnchor.constraint(equalToConstant: 60),
-            circleContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            circleContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10)
-        ]
-        
         // titleLbl constraints
         let titleLblConstraints = [
-            titleLbl.leadingAnchor.constraint(equalTo: circleContentView.leadingAnchor, constant: 10),
-            titleLbl.trailingAnchor.constraint(equalTo: circleContentView.trailingAnchor, constant: -10),
-            titleLbl.centerYAnchor.constraint(equalTo: circleContentView.centerYAnchor)
+            titleLbl.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            titleLbl.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ]
+        
+        // disclousere Indicator constraints
+        let disclousereIndicatorConstraints = [
+            disclousereIndicator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            disclousereIndicator.centerYAnchor.constraint(equalTo: titleLbl.centerYAnchor),
+            disclousereIndicator.heightAnchor.constraint(equalToConstant: 10),
+            disclousereIndicator.widthAnchor.constraint(equalToConstant: 10)
         ]
         
         // activate constraints
-        NSLayoutConstraint.activate(circleContentViewConstraints)
         NSLayoutConstraint.activate(titleLblConstraints)
+        NSLayoutConstraint.activate(disclousereIndicatorConstraints)
     }
 
     //MARK: - Configure

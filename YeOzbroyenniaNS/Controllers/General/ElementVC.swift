@@ -22,10 +22,9 @@ class ElementVC: UIViewController {
     
     private let listTable: UITableView = {
         let table = UITableView()
-        table.backgroundColor = .clear
+        table.backgroundColor = .white.withAlphaComponent(0.4)
         table.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
         table.showsVerticalScrollIndicator = false
-        table.separatorStyle = .none
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
@@ -49,6 +48,8 @@ class ElementVC: UIViewController {
         applyConstraints()
         // apply delegates
         applyTableDelegates()
+        
+        //tabBarController?.tabBar.isHidden = true
         
     }
     
@@ -124,6 +125,11 @@ extension ElementVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier) as? ListCell else { return UITableViewCell() }
         cell.configure(with: element.items[indexPath.row])
         return cell
+    }
+    
+    // height for row
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
     
     // did select row

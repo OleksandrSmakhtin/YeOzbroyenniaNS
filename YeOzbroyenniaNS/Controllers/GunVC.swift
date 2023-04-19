@@ -24,8 +24,7 @@ class GunVC: UIViewController {
         let table = UITableView()
         table.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
         table.showsVerticalScrollIndicator = false
-        table.separatorStyle = .none
-        table.backgroundColor = .clear
+        table.backgroundColor = .white.withAlphaComponent(0.4)
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
@@ -49,7 +48,7 @@ class GunVC: UIViewController {
         applyConstraints()
         // apply delegates
         applyTableDelegates()
-        
+        tabBarController?.tabBar.backgroundColor = .white.withAlphaComponent(0.4)
 //        let json = DataPersistance.shared.encodeData()
 //        FileHandler.shared.saveJson(json: json)
         
@@ -82,7 +81,7 @@ class GunVC: UIViewController {
         let gunsTableConstraints = [
             gunsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             gunsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            gunsTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor),
+            gunsTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 20),
             gunsTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ]
         
@@ -114,6 +113,7 @@ extension GunVC {
     //MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
     }
 }
 
@@ -134,11 +134,13 @@ extension GunVC: UITableViewDelegate, UITableViewDataSource {
     // cell for row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier) as? ListCell else { return UITableViewCell() }
-        
-        
         cell.configure(with: categories[indexPath.row])
-        
         return cell
+    }
+    
+    // height for row
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
     
     // did select row

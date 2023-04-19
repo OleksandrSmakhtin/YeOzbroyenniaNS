@@ -20,9 +20,25 @@ class ItemVC: UIViewController {
         return view
     }()
     
+    private let itemTitle: UILabel = {
+        let lbl = UILabel()
+        lbl.textColor = .label
+        lbl.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
+    }()
+    
+    private let circleContentView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 5
+        view.backgroundColor = .white.withAlphaComponent(0.1)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private let itemTable: UITableView = {
         let table = UITableView()
-        table.backgroundColor = .white.withAlphaComponent(0.1)
+        table.backgroundColor = .clear
         table.layer.cornerRadius = 5
         table.register(ItemCell.self, forCellReuseIdentifier: ItemCell.identifier)
         table.showsVerticalScrollIndicator = false
@@ -47,6 +63,8 @@ class ItemVC: UIViewController {
         applyConstraints()
         // apply delegates
         applyTableDelegates()
+        // set title
+        itemTitle.text = item.item
     }
     
     //MARK: - viewDidLayoutSubviews
@@ -59,7 +77,9 @@ class ItemVC: UIViewController {
     private func addSubviews() {
         view.addSubview(bgImageView)
         view.addSubview(topSeparatorView)
-        view.addSubview(itemTable)
+        view.addSubview(circleContentView)
+        view.addSubview(itemTitle)
+        circleContentView.addSubview(itemTable)
     }
     
     //MARK: - Apply constraints
@@ -72,16 +92,32 @@ class ItemVC: UIViewController {
             topSeparatorView.heightAnchor.constraint(equalToConstant: 1)
         ]
         
+        // circleContentView constraints
+        let circleContentViewConstraints = [
+            circleContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            circleContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            circleContentView.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 100),
+            circleContentView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ]
+        
+        // itemTitle constraints
+        let itemTitleConstraints = [
+            itemTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            itemTitle.bottomAnchor.constraint(equalTo: circleContentView.topAnchor, constant: -20)
+        ]
+        
         // itemTable constraints
         let itemTableConstraints = [
-            itemTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            itemTable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            itemTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 40),
-            itemTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            itemTable.leadingAnchor.constraint(equalTo: circleContentView.leadingAnchor, constant: 10),
+            itemTable.trailingAnchor.constraint(equalTo: circleContentView.trailingAnchor, constant: -10),
+            itemTable.topAnchor.constraint(equalTo: circleContentView.topAnchor, constant: 10),
+            itemTable.bottomAnchor.constraint(equalTo: circleContentView.bottomAnchor)
         ]
         
         // activate constraints
         NSLayoutConstraint.activate(topSeparatorViewConstraints)
+        NSLayoutConstraint.activate(circleContentViewConstraints)
+        NSLayoutConstraint.activate(itemTitleConstraints)
         NSLayoutConstraint.activate(itemTableConstraints)
     }
 
