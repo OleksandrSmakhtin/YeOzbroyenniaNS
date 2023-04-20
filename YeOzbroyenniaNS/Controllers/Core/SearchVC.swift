@@ -1,17 +1,16 @@
 //
-//  TechniqueVC.swift
+//  SearchVC.swift
 //  YeOzbroyenniaNS
 //
-//  Created by Oleksandr Smakhtin on 16.04.2023.
+//  Created by Oleksandr Smakhtin on 17.04.2023.
 //
 
 import UIKit
 
-class TechniqueVC: UIViewController {
+class SearchVC: UIViewController {
     
     //MARK: - Data
-    private let categories = Category.shared.getTeqCategories()
-    
+    private var searchedItems = DataManager.shared.getRandom()
     
     //MARK: - UI Objects
     private let topSeparatorView: UIView = {
@@ -21,13 +20,21 @@ class TechniqueVC: UIViewController {
         return view
     }()
     
-    private let teqTable: UITableView = {
+    private let searchTable: UITableView = {
         let table = UITableView()
         table.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
         table.showsVerticalScrollIndicator = false
-        table.backgroundColor = .white.withAlphaComponent(0.4)
+        table.backgroundColor = UIColor(named: "tableColor")
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
+    }()
+    
+    private let searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: SearchResultsVC())
+        controller.searchBar.placeholder = "Я шукаю..."
+        controller.searchBar.searchBarStyle = .minimal
+        controller.searchBar.setValue("Назад", forKey: "cancelButtonText")
+        return controller
     }()
     
     private let bgImageView: UIImageView = {
@@ -47,7 +54,7 @@ class TechniqueVC: UIViewController {
         applyConstraints()
         // apply delegates
         applyTableDelegates()
-        
+        applySearchDelegates()
     }
     
     //MARK: - viewDidLayoutSubviews
@@ -60,7 +67,7 @@ class TechniqueVC: UIViewController {
     private func addSubviews() {
         view.addSubview(bgImageView)
         view.addSubview(topSeparatorView)
-        view.addSubview(teqTable)
+        view.addSubview(searchTable)
     }
     
     //MARK: - Apply constraints
@@ -73,37 +80,38 @@ class TechniqueVC: UIViewController {
             topSeparatorView.heightAnchor.constraint(equalToConstant: 1)
         ]
         
-        // teqTable constraints
-        let teqTableConstraints = [
-            teqTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            teqTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            teqTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 20),
-            teqTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+        // searchTable constraints
+        let searchTableConstraints = [
+            searchTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            searchTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            searchTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 20),
+            searchTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ]
         
         // activate constraints
         NSLayoutConstraint.activate(topSeparatorViewConstraints)
-        NSLayoutConstraint.activate(teqTableConstraints)
-        
+        NSLayoutConstraint.activate(searchTableConstraints)
     }
     
     //MARK: - Congifure nav bar
     private func configureNavBar() {
         let titleLbl: UILabel = {
             let lbl = UILabel()
-            lbl.text = "Техніка"
+            lbl.text = "Пошук"
             lbl.textColor = .label
             lbl.font = UIFont.systemFont(ofSize: 35, weight: .bold)
             return lbl
         }()
-        
+        navigationItem.searchController = searchController
+        navigationController?.navigationBar.tintColor = .label
+        navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLbl)
     }
 
 }
 
 //MARK: - Lifecycle
-extension TechniqueVC {
+extension SearchVC {
     //MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -112,22 +120,22 @@ extension TechniqueVC {
 }
 
 //MARK: - UITableViewDelegate & DataSource
-extension TechniqueVC: UITableViewDelegate, UITableViewDataSource {
+extension SearchVC: UITableViewDelegate, UITableViewDataSource {
     // apply table delegates
     private func applyTableDelegates() {
-        teqTable.delegate = self
-        teqTable.dataSource = self
+        searchTable.delegate = self
+        searchTable.dataSource = self
     }
     
     // nubers of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return searchedItems.count
     }
     
     // cell for row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier) as? ListCell else { return UITableViewCell() }
-        cell.configure(with: categories[indexPath.row])
+        cell.configure(with: searchedItems[indexPath.row])
         return cell
     }
     
@@ -138,12 +146,49 @@ extension TechniqueVC: UITableViewDelegate, UITableViewDataSource {
     
     // did select row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = categories[indexPath.row]
-        let subcategory = DataManager.shared.getSubcategory(by: model)
-
-        let vc = SubcategoryVC()
-        vc.subcategory = subcategory
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Техніка", style: .plain, target: nil, action: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let itemTitle = searchedItems[indexPath.row]
+        let item = DataManager.shared.getItem(by: itemTitle)
+        let vc = ItemVC()
+        vc.item = item
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Пошук", style: .plain, target: nil, action: nil)
         navigationController?.pushViewController(vc, animated: true)
     }
+}
+
+//MARK: - UISearchResultsUpdating
+extension SearchVC: UISearchResultsUpdating {
+    private func applySearchDelegates() {
+        searchController.searchResultsUpdater = self
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        guard let query = searchBar.text, !query.trimmingCharacters(in: .whitespaces).isEmpty, query.trimmingCharacters(in: .whitespaces).count >= 1 else { return }
+        guard let resultController = searchController.searchResultsController as? SearchResultsVC else { return }
+        resultController.delegate = self
+        
+        let searchedData = DataManager.shared.getSearchedItems(by: query)
+        
+        resultController.searchedData = searchedData
+        
+        searchedItems = searchedData
+        searchTable.reloadData()
+    }
+}
+
+//MARK: - SearchResultsDelegate
+extension SearchVC: SearchResultDelegate {
+    func didSelectItem(with title: String) {
+        DispatchQueue.main.async { [weak self] in
+            let item = DataManager.shared.getItem(by: title)
+            let vc = ItemVC()
+            vc.item = item
+            self?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Пошук", style: .plain, target: nil, action: nil)
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    
 }

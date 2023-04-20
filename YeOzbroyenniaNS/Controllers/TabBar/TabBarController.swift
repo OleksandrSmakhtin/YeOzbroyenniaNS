@@ -12,14 +12,14 @@ class TabBarController: UITabBarController {
     //MARK: - UI Objects
     private let bottomSpacerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white.withAlphaComponent(0.4)//.gray.withAlphaComponent(0.5)
+        view.backgroundColor = UIColor(named: "tableColor")//UIColor(named: "tableColor")//.gray.withAlphaComponent(0.5)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private let separetorView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray.withAlphaComponent(0.5)
+        view.backgroundColor = UIColor(named: "separator")//.lightGray.withAlphaComponent(0.5)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -46,20 +46,16 @@ class TabBarController: UITabBarController {
         vc3.tabBarItem.image = UIImage(systemName: "magnifyingglass")
         vc3.tabBarItem.title = "Пошук"
         
-        let vc4 = UINavigationController(rootViewController: InfoVC())
-        vc4.tabBarItem.image = UIImage(systemName: "list.bullet.clipboard")
-        vc4.tabBarItem.title = "Посібник"
+        let vc4 = UINavigationController(rootViewController: SettingsVC())
+        vc4.tabBarItem.image = UIImage(systemName: "gearshape")
+        vc4.tabBarItem.title = "Налаштування"
         
-        let vc5 = UINavigationController(rootViewController: SettingsVC())
-        vc5.tabBarItem.image = UIImage(systemName: "gearshape")
-        vc5.tabBarItem.title = "Налаштування"
-        
-        setViewControllers([vc1, vc2, vc3, vc5], animated: true)
+        setViewControllers([vc1, vc2, vc3, vc4], animated: true)
     }
     
     //MARK: - Configure nav bar
     private func configureTabBar() {
-        tabBar.tintColor = .label
+        tabBar.tintColor = .black
         tabBar.addSubview(bottomSpacerView)
         tabBar.addSubview(separetorView)
         applyConstraints()
@@ -77,8 +73,8 @@ class TabBarController: UITabBarController {
         
         // separetorView constraints
         let separetorViewConstraints = [
-            separetorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            separetorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            separetorView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            separetorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             separetorView.bottomAnchor.constraint(equalTo: bottomSpacerView.topAnchor),
             separetorView.heightAnchor.constraint(equalToConstant: 1)
         ]

@@ -40,7 +40,7 @@ class ItemVC: UIViewController {
     private let circleContentView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5
-        view.backgroundColor = .white.withAlphaComponent(0.4)
+        view.backgroundColor = UIColor(named: "tableColor")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

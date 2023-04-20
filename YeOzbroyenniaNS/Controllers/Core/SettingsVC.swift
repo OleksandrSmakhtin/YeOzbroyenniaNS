@@ -1,5 +1,5 @@
 //
-//  GunVC.swift
+//  SettingsVC.swift
 //  YeOzbroyenniaNS
 //
 //  Created by Oleksandr Smakhtin on 16.04.2023.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class GunVC: UIViewController {
+class SettingsVC: UIViewController {
     
     //MARK: - Data
-    let categories = Category.shared.getGunCategories()
-
+    private let settings = SettingsData.shared.getSettings()
+    
     //MARK: - UI Objects
     private let topSeparatorView: UIView = {
         let view = UIView()
@@ -20,11 +20,12 @@ class GunVC: UIViewController {
         return view
     }()
     
-    private let gunsTable: UITableView = {
+    private let settingsTable: UITableView = {
         let table = UITableView()
-        table.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
+        table.register(SettingCell.self, forCellReuseIdentifier: SettingCell.identifier)
         table.showsVerticalScrollIndicator = false
-        table.backgroundColor = .white.withAlphaComponent(0.4)
+        table.isScrollEnabled = false
+        table.backgroundColor = UIColor(named: "tableColor")
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
@@ -34,13 +35,11 @@ class GunVC: UIViewController {
         imageView.image = UIImage(named: "background")
         return imageView
     }()
-    
+
     //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        // bg color
-        view.backgroundColor = .systemBackground
-        // configure nav bar
+        // configute nav bar
         configureNavBar()
         // add subviews
         addSubviews()
@@ -48,13 +47,10 @@ class GunVC: UIViewController {
         applyConstraints()
         // apply delegates
         applyTableDelegates()
-        tabBarController?.tabBar.backgroundColor = .white.withAlphaComponent(0.4)
-//        let json = DataPersistance.shared.encodeData()
-//        FileHandler.shared.saveJson(json: json)
         
     }
     
-    //MARK: - viewDidLayoutSubviews
+    //MARK: - viewDidLayout
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         bgImageView.frame = view.frame
@@ -64,7 +60,7 @@ class GunVC: UIViewController {
     private func addSubviews() {
         view.addSubview(bgImageView)
         view.addSubview(topSeparatorView)
-        view.addSubview(gunsTable)
+        view.addSubview(settingsTable)
     }
     
     //MARK: - Apply constraints
@@ -77,37 +73,37 @@ class GunVC: UIViewController {
             topSeparatorView.heightAnchor.constraint(equalToConstant: 1)
         ]
         
-        // gunsTable constraints
-        let gunsTableConstraints = [
-            gunsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            gunsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            gunsTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 20),
-            gunsTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+        // // settingsTable constraints
+        let settingsTableConstraints = [
+            settingsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            settingsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            settingsTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 20),
+            settingsTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ]
         
         // activate constraints
         NSLayoutConstraint.activate(topSeparatorViewConstraints)
-        NSLayoutConstraint.activate(gunsTableConstraints)
+        NSLayoutConstraint.activate(settingsTableConstraints)
     }
-    
-    
+
     
     //MARK: - Congifure nav bar
     private func configureNavBar() {
         let titleLbl: UILabel = {
             let lbl = UILabel()
-            lbl.text = "Зброя"
+            lbl.text = "Налаштування"
             lbl.textColor = .label
             lbl.font = UIFont.systemFont(ofSize: 35, weight: .bold)
             return lbl
         }()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLbl)
+        navigationController?.navigationBar.tintColor = .label
     }
 }
 
 //MARK: - Lifecycle
-extension GunVC {
+extension SettingsVC {
     //MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -117,23 +113,16 @@ extension GunVC {
 
 
 //MARK: - UITableViewDelegate & DataSource
-extension GunVC: UITableViewDelegate, UITableViewDataSource {
+extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
     // apply table delegates
     private func applyTableDelegates() {
-        gunsTable.delegate = self
-        gunsTable.dataSource = self
+        settingsTable.delegate = self
+        settingsTable.dataSource = self
     }
     
     // nubers of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
-    }
-    
-    // cell for row
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier) as? ListCell else { return UITableViewCell() }
-        cell.configure(with: categories[indexPath.row])
-        return cell
+        return settings.count
     }
     
     // height for row
@@ -141,15 +130,31 @@ extension GunVC: UITableViewDelegate, UITableViewDataSource {
         return 80
     }
     
-    // did select row
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
-        let model = categories[indexPath.row]
-        let element = DataManager.shared.getElements(by: model)
-        
-        let vc = ElementVC()
-        vc.element = element
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Зброя", style: .plain, target: nil, action: nil)
-        navigationController?.pushViewController(vc, animated: true)
-        
+    // cell for row
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingCell.identifier) as? SettingCell else { return UITableViewCell() }
+        if indexPath.row == settings.count - 1 {
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 1000)
+        }
+        let setting = settings[indexPath.row]
+        cell.configure(with: setting)
+        return cell
     }
+    
+    // did select row
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellType = settings[indexPath.row].type
+        
+        switch cellType {
+        case .favorite:
+            let vc = FavoritesVC()
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+            navigationController?.pushViewController(vc, animated: true)
+        case .rate:
+            print("rate")
+        case .thank:
+            print("thank")
+        }
+    }
+    
 }

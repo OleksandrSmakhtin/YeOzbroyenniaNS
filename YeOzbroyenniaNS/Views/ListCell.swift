@@ -30,6 +30,13 @@ class ListCell: UITableViewCell {
         return imageView
     }()
     
+    private let bottomSeparatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "separator")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     //MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,12 +57,21 @@ class ListCell: UITableViewCell {
     
     //MARK: - Add subviews
     private func addSubviews() {
+        //contentView.addSubview(bottomSeparatorView)
         contentView.addSubview(titleLbl)
         contentView.addSubview(disclousereIndicator)
     }
     
     //MARK: - Apply constraints
     private func applyConstraints() {
+        // bottomSeparatorView constraints
+        let bottomSeparatorViewConstraints = [
+            bottomSeparatorView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            bottomSeparatorView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            bottomSeparatorView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            bottomSeparatorView.heightAnchor.constraint(equalToConstant: 1)
+        ]
+        
         // titleLbl constraints
         let titleLblConstraints = [
             titleLbl.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
@@ -72,6 +88,7 @@ class ListCell: UITableViewCell {
         ]
         
         // activate constraints
+        //NSLayoutConstraint.activate(bottomSeparatorViewConstraints)
         NSLayoutConstraint.activate(titleLblConstraints)
         NSLayoutConstraint.activate(disclousereIndicatorConstraints)
     }

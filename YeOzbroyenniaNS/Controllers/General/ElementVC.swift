@@ -22,7 +22,7 @@ class ElementVC: UIViewController {
     
     private let listTable: UITableView = {
         let table = UITableView()
-        table.backgroundColor = .white.withAlphaComponent(0.4)
+        table.backgroundColor = UIColor(named: "tableColor")
         table.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
         table.showsVerticalScrollIndicator = false
         table.translatesAutoresizingMaskIntoConstraints = false
