@@ -20,9 +20,18 @@ class ItemVC: UIViewController {
         return view
     }()
     
+    private let underlineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white.withAlphaComponent(0.7)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private let itemTitle: UILabel = {
         let lbl = UILabel()
         lbl.textColor = .label
+        lbl.numberOfLines = 2
+        lbl.textAlignment = .center
         lbl.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
@@ -48,7 +57,7 @@ class ItemVC: UIViewController {
     
     private let bgImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "lightBg")
+        imageView.image = UIImage(named: "background")
         return imageView
     }()
 
@@ -57,6 +66,8 @@ class ItemVC: UIViewController {
         super.viewDidLoad()
         // bg color
         view.backgroundColor = .systemBackground
+        // configure nav bar
+        configureNavBar()
         // add subviews
         addSubviews()
         // apply constraints
@@ -79,6 +90,7 @@ class ItemVC: UIViewController {
         view.addSubview(topSeparatorView)
         view.addSubview(circleContentView)
         view.addSubview(itemTitle)
+        view.addSubview(underlineView)
         circleContentView.addSubview(itemTable)
     }
     
@@ -103,7 +115,17 @@ class ItemVC: UIViewController {
         // itemTitle constraints
         let itemTitleConstraints = [
             itemTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            itemTitle.bottomAnchor.constraint(equalTo: circleContentView.topAnchor, constant: -20)
+            itemTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            itemTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            itemTitle.bottomAnchor.constraint(equalTo: circleContentView.topAnchor, constant: -40)
+        ]
+        
+        // underlineView constraints
+        let underlineViewConstraints = [
+            underlineView.heightAnchor.constraint(equalToConstant: 1),
+            underlineView.topAnchor.constraint(equalTo: itemTitle.bottomAnchor, constant: 15),
+            underlineView.widthAnchor.constraint(equalToConstant: 100),
+            underlineView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ]
         
         // itemTable constraints
@@ -118,9 +140,24 @@ class ItemVC: UIViewController {
         NSLayoutConstraint.activate(topSeparatorViewConstraints)
         NSLayoutConstraint.activate(circleContentViewConstraints)
         NSLayoutConstraint.activate(itemTitleConstraints)
+        NSLayoutConstraint.activate(underlineViewConstraints)
         NSLayoutConstraint.activate(itemTableConstraints)
     }
+    
+    //MARK: - Configure nav bar
+    private func configureNavBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: nil)
+    }
 
+}
+
+//MARK: - Lifecycle
+extension ItemVC {
+    //MARK: - viewWillAppear
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
 }
 
 
@@ -141,13 +178,7 @@ extension ItemVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.identifier) as? ItemCell else { return UITableViewCell() }
         let properties = item.property
-        
-        
         cell.configure(with: properties[indexPath.row].name, value: properties[indexPath.row].value)
-//        cell.textLabel?.text = properties[indexPath.row].name
-//        print("\(properties[indexPath.row].name) ---- \(properties[indexPath.row].value)")
-//        cell.detailTextLabel?.text = properties[indexPath.row].value
-        
         return cell
     }
 }

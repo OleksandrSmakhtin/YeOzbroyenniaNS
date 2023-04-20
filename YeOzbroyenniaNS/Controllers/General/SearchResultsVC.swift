@@ -1,17 +1,30 @@
 //
-//  ListVC.swift
+//  SearchResultsVC.swift
 //  YeOzbroyenniaNS
 //
-//  Created by Oleksandr Smakhtin on 18.04.2023.
+//  Created by Oleksandr Smakhtin on 20.04.2023.
 //
 
 import UIKit
 
-class ElementVC: UIViewController {
+protocol SearchResultDelegate: AnyObject {
+    func didSelectItem(with title: String)
+}
+
+class SearchResultsVC: UIViewController {
+    
+    //MARK: - Delegate
+    weak var delegate: SearchResultDelegate?
     
     //MARK: - Data
-    public var element = Element(subcategory: "", items: [""])
-    
+    public var searchedData = [String]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.searchTable.reloadData()
+            }
+        }
+    }
+
     //MARK: - UI Objects
     private let topSeparatorView: UIView = {
         let view = UIView()
@@ -20,11 +33,11 @@ class ElementVC: UIViewController {
         return view
     }()
     
-    private let listTable: UITableView = {
+    private let searchTable: UITableView = {
         let table = UITableView()
-        table.backgroundColor = .white.withAlphaComponent(0.4)
         table.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
         table.showsVerticalScrollIndicator = false
+        table.backgroundColor = .white.withAlphaComponent(0.4)
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
@@ -38,16 +51,13 @@ class ElementVC: UIViewController {
     //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        // bg color
-        view.backgroundColor = .systemBackground
-        // configure nav bar
-        configureNavBar(with: element.subcategory)
         // add subviews
         addSubviews()
         // apply constraints
         applyConstraints()
         // apply delegates
         applyTableDelegates()
+        
     }
     
     //MARK: - viewDidLayoutSubviews
@@ -60,7 +70,7 @@ class ElementVC: UIViewController {
     private func addSubviews() {
         view.addSubview(bgImageView)
         view.addSubview(topSeparatorView)
-        view.addSubview(listTable)
+        view.addSubview(searchTable)
     }
     
     //MARK: - Apply constraints
@@ -69,60 +79,43 @@ class ElementVC: UIViewController {
         let topSeparatorViewConstraints = [
             topSeparatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             topSeparatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            topSeparatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 1),
+            topSeparatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             topSeparatorView.heightAnchor.constraint(equalToConstant: 1)
         ]
         
-        // listTable constraints
-        let listTableConstraints = [
-            listTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            listTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            listTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 20),
-            listTable.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            //listTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        // searchTable constraints
+        let searchTableConstraints = [
+            searchTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            searchTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            searchTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 20),
+            searchTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ]
         
         // activate constraints
         NSLayoutConstraint.activate(topSeparatorViewConstraints)
-        NSLayoutConstraint.activate(listTableConstraints)
+        NSLayoutConstraint.activate(searchTableConstraints)
     }
-    
-    
-    //MARK: - Congifure nav bar
-    public func configureNavBar(with title: String) {
-        self.title = title
-        navigationController?.navigationBar.tintColor = .label
-    }
+
 }
-
-
-//MARK: - Lifecycle
-extension ElementVC {
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tabBarController?.tabBar.isHidden = true
-    }
-}
-
 
 
 //MARK: - UITableViewDelegate & DataSource
-extension ElementVC: UITableViewDelegate, UITableViewDataSource {
+extension SearchResultsVC: UITableViewDelegate, UITableViewDataSource {
     // apply table delegates
     private func applyTableDelegates() {
-        listTable.delegate = self
-        listTable.dataSource = self
+        searchTable.delegate = self
+        searchTable.dataSource = self
     }
     
     // nubers of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return element.items.count
+        return searchedData.count
     }
     
     // cell for row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier) as? ListCell else { return UITableViewCell() }
-        cell.configure(with: element.items[indexPath.row])
+        cell.configure(with: searchedData[indexPath.row])
         return cell
     }
     
@@ -133,16 +126,14 @@ extension ElementVC: UITableViewDelegate, UITableViewDataSource {
     
     // did select row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let itemTitle = element.items[indexPath.row]
-
-        let item = DataManager.shared.getItem(by: itemTitle)
-        
-        let vc = ItemVC()
-        vc.item = item
-        navigationController?.pushViewController(vc, animated: true)
-        
+        delegate?.didSelectItem(with: searchedData[indexPath.row])
+//        tableView.deselectRow(at: indexPath, animated: true)
+//
+//        let itemTitle = searchedData[indexPath.row]
+//        let item = DataManager.shared.getItem(by: itemTitle)
+//        let vc = ItemVC()
+//        vc.item = item
+//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Пошук", style: .plain, target: nil, action: nil)
+//        navigationController?.pushViewController(vc, animated: true)
     }
-    
 }

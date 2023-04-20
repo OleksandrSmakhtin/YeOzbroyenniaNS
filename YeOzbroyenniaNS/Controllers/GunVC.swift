@@ -31,7 +31,7 @@ class GunVC: UIViewController {
     
     private let bgImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "lightBg")
+        imageView.image = UIImage(named: "background")
         return imageView
     }()
     
@@ -152,5 +152,4 @@ extension GunVC: UITableViewDelegate, UITableViewDataSource {
         navigationController?.pushViewController(vc, animated: true)
         
     }
-    
 }

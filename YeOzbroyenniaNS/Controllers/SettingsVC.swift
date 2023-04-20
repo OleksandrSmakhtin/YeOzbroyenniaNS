@@ -32,7 +32,7 @@ class SettingsVC: UIViewController {
     
     private let bgImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "lightBg")
+        imageView.image = UIImage(named: "background")
         return imageView
     }()
 

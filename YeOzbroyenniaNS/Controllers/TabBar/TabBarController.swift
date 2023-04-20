@@ -54,7 +54,7 @@ class TabBarController: UITabBarController {
         vc5.tabBarItem.image = UIImage(systemName: "gearshape")
         vc5.tabBarItem.title = "Налаштування"
         
-        setViewControllers([vc1, vc2, vc3, vc4, vc5], animated: true)
+        setViewControllers([vc1, vc2, vc3, vc5], animated: true)
     }
     
     //MARK: - Configure nav bar

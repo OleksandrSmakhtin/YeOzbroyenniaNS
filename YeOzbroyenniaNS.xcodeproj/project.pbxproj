@@ -36,6 +36,8 @@
 		44E478F629EF02390034C51E /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E478F529EF02390034C51E /* ItemCell.swift */; };
 		44E478FA29F16D6C0034C51E /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E478F929F16D6C0034C51E /* Setting.swift */; };
 		44E478FC29F174F20034C51E /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E478FB29F174F20034C51E /* SettingCell.swift */; };
+		44E478FE29F1944C0034C51E /* allItems.json in Resources */ = {isa = PBXBuildFile; fileRef = 44E478FD29F1944B0034C51E /* allItems.json */; };
+		44E4790029F199CE0034C51E /* SearchResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E478FF29F199CE0034C51E /* SearchResultsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		44E478F529EF02390034C51E /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		44E478F929F16D6C0034C51E /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		44E478FB29F174F20034C51E /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		44E478FD29F1944B0034C51E /* allItems.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = allItems.json; sourceTree = "<group>"; };
+		44E478FF29F199CE0034C51E /* SearchResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +233,7 @@
 				44E478E629EEC06A0034C51E /* ElementVC.swift */,
 				44E478EF29EEDD890034C51E /* SubcategoryVC.swift */,
 				44E478F129EEDDAE0034C51E /* ItemVC.swift */,
+				44E478FF29F199CE0034C51E /* SearchResultsVC.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				44E478ED29EEC90F0034C51E /* allGuns.json */,
+				44E478FD29F1944B0034C51E /* allItems.json */,
 				44E478EB29EEC9090034C51E /* elements.json */,
 				44E478E929EEC8F80034C51E /* subcategories.json */,
 			);
@@ -351,6 +357,7 @@
 				44E478EE29EEC90F0034C51E /* allGuns.json in Resources */,
 				44B0DA4029EC79C1007FD80F /* Assets.xcassets in Resources */,
 				44E478EC29EEC9090034C51E /* elements.json in Resources */,
+				44E478FE29F1944C0034C51E /* allItems.json in Resources */,
 				44E478EA29EEC8F80034C51E /* subcategories.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +396,7 @@
 				44E478FA29F16D6C0034C51E /* Setting.swift in Sources */,
 				44E478FC29F174F20034C51E /* SettingCell.swift in Sources */,
 				44B0DA7329EC7F3B007FD80F /* SettingsVC.swift in Sources */,
+				44E4790029F199CE0034C51E /* SearchResultsVC.swift in Sources */,
 				44E478DF29EEAD700034C51E /* Subcategory.swift in Sources */,
 				44B0DA3729EC79C1007FD80F /* AppDelegate.swift in Sources */,
 				44B0DA3929EC79C1007FD80F /* SceneDelegate.swift in Sources */,

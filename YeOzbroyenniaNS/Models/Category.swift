@@ -33,7 +33,6 @@ class Category {
     
     func getTeqCategories() -> [String] {
         lazy var categories = [
-            "Стрілецька зброя",
             "Бронетехніка",
             "Артилерія",
             "Системи зв'язку",

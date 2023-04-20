@@ -59,6 +59,7 @@ class ListCell: UITableViewCell {
         // titleLbl constraints
         let titleLblConstraints = [
             titleLbl.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            titleLbl.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -50),
             titleLbl.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ]
         
