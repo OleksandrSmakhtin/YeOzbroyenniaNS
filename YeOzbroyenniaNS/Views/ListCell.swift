@@ -64,7 +64,7 @@ class ListCell: UITableViewCell {
         
         // disclousere Indicator constraints
         let disclousereIndicatorConstraints = [
-            disclousereIndicator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            disclousereIndicator.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             disclousereIndicator.centerYAnchor.constraint(equalTo: titleLbl.centerYAnchor),
             disclousereIndicator.heightAnchor.constraint(equalToConstant: 10),
             disclousereIndicator.widthAnchor.constraint(equalToConstant: 10)

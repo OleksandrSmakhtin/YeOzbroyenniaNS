@@ -48,8 +48,8 @@ class ElementVC: UIViewController {
         applyConstraints()
         // apply delegates
         applyTableDelegates()
-        
-        //tabBarController?.tabBar.isHidden = true
+        // hide tab bar
+        tabBarController?.tabBar.isHidden = true
         
     }
     
@@ -80,8 +80,9 @@ class ElementVC: UIViewController {
         let listTableConstraints = [
             listTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             listTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            listTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor),
-            listTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            listTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 20),
+            listTable.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            //listTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ]
         
         // activate constraints

@@ -31,7 +31,7 @@ class ItemVC: UIViewController {
     private let circleContentView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5
-        view.backgroundColor = .white.withAlphaComponent(0.1)
+        view.backgroundColor = .white.withAlphaComponent(0.4)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -94,10 +94,10 @@ class ItemVC: UIViewController {
         
         // circleContentView constraints
         let circleContentViewConstraints = [
-            circleContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            circleContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            circleContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            circleContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             circleContentView.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 100),
-            circleContentView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            circleContentView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]
         
         // itemTitle constraints

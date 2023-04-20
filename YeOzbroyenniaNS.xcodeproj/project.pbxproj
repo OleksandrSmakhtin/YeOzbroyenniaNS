@@ -34,6 +34,8 @@
 		44E478F229EEDDAE0034C51E /* ItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E478F129EEDDAE0034C51E /* ItemVC.swift */; };
 		44E478F429EEEDFE0034C51E /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E478F329EEEDFE0034C51E /* ListCell.swift */; };
 		44E478F629EF02390034C51E /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E478F529EF02390034C51E /* ItemCell.swift */; };
+		44E478FA29F16D6C0034C51E /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E478F929F16D6C0034C51E /* Setting.swift */; };
+		44E478FC29F174F20034C51E /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E478FB29F174F20034C51E /* SettingCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		44E478F129EEDDAE0034C51E /* ItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemVC.swift; sourceTree = "<group>"; };
 		44E478F329EEEDFE0034C51E /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		44E478F529EF02390034C51E /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		44E478F929F16D6C0034C51E /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
+		44E478FB29F174F20034C51E /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +189,7 @@
 			children = (
 				44E478F329EEEDFE0034C51E /* ListCell.swift */,
 				44E478F529EF02390034C51E /* ItemCell.swift */,
+				44E478FB29F174F20034C51E /* SettingCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 				44E478DC29EEAB3C0034C51E /* Category.swift */,
 				44E478DE29EEAD700034C51E /* Subcategory.swift */,
 				44E478E329EEB04E0034C51E /* Element.swift */,
+				44E478F929F16D6C0034C51E /* Setting.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -380,6 +386,8 @@
 				44B0DA6D29EC7E84007FD80F /* GunVC.swift in Sources */,
 				44E478E729EEC06A0034C51E /* ElementVC.swift in Sources */,
 				44B0DA7129EC7F1C007FD80F /* InfoVC.swift in Sources */,
+				44E478FA29F16D6C0034C51E /* Setting.swift in Sources */,
+				44E478FC29F174F20034C51E /* SettingCell.swift in Sources */,
 				44B0DA7329EC7F3B007FD80F /* SettingsVC.swift in Sources */,
 				44E478DF29EEAD700034C51E /* Subcategory.swift in Sources */,
 				44B0DA3729EC79C1007FD80F /* AppDelegate.swift in Sources */,

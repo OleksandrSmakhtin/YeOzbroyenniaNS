@@ -10,9 +10,16 @@ import UIKit
 class TabBarController: UITabBarController {
     
     //MARK: - UI Objects
-    private let bottomSeparatorView: UIView = {
+    private let bottomSpacerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray.withAlphaComponent(0.5)
+        view.backgroundColor = .white.withAlphaComponent(0.4)//.gray.withAlphaComponent(0.5)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let separetorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray.withAlphaComponent(0.5)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -53,22 +60,32 @@ class TabBarController: UITabBarController {
     //MARK: - Configure nav bar
     private func configureTabBar() {
         tabBar.tintColor = .label
-        //tabBar.addSubview(bottomSeparatorView)
-        //applyConstraints()
+        tabBar.addSubview(bottomSpacerView)
+        tabBar.addSubview(separetorView)
+        applyConstraints()
     }
     
     //MARK: - Apply constraints
     private func applyConstraints() {
         // bottomSeparatorView constraints
         let bottomSeparatorViewConstraints = [
-            bottomSeparatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            bottomSeparatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            bottomSeparatorView.heightAnchor.constraint(equalToConstant: 1),
-            bottomSeparatorView.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -1)
+            bottomSpacerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomSpacerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomSpacerView.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -10),
+            bottomSpacerView.bottomAnchor.constraint(equalTo: tabBar.topAnchor)
+        ]
+        
+        // separetorView constraints
+        let separetorViewConstraints = [
+            separetorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            separetorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            separetorView.bottomAnchor.constraint(equalTo: bottomSpacerView.topAnchor),
+            separetorView.heightAnchor.constraint(equalToConstant: 1)
         ]
         
         // activate constraints
         NSLayoutConstraint.activate(bottomSeparatorViewConstraints)
+        NSLayoutConstraint.activate(separetorViewConstraints)
     }
 
 

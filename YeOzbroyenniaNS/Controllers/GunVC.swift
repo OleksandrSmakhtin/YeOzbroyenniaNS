@@ -82,7 +82,7 @@ class GunVC: UIViewController {
             gunsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             gunsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             gunsTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 20),
-            gunsTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            gunsTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ]
         
         // activate constraints
@@ -103,8 +103,6 @@ class GunVC: UIViewController {
         }()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLbl)
-//        title = "Зброя"
-//        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
 
