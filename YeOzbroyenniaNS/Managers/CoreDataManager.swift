@@ -57,14 +57,34 @@ class CoreDataManager {
     
     
     //MARK: - Delete
-    func deleteItem(item: CoreItem) {
-        context.delete(item)
+    func deleteItem(with title: String) {
+        let request = CoreItem.fetchRequest()
+        request.predicate = NSPredicate(format: "title == %@", title)
+        request.fetchLimit = 1
         do {
-            try context.save()
-            print("Successfully deleted Item from CoreData")
+            let items = try context.fetch(request)
+            if let item = items.first {
+                context.delete(item)
+                try context.save()
+            }
         } catch {
-            print("Failed to delete Item from CoreData due to: \(error.localizedDescription)")
+            print("Error fetching or deleting item: \(error)")
         }
+    }
+    
+    //MARK: - Exist
+    func isItemExists(with title: String) -> Bool {
+        let request = CoreItem.fetchRequest()
+        request.predicate = NSPredicate(format: "title == %@", title)
+        request.fetchLimit = 1
+        do {
+            let items = try context.fetch(request)
+            return !items.isEmpty
+        } catch {
+            print("Error fetching items: \(error)")
+            return false
+        }
+        
     }
     
     

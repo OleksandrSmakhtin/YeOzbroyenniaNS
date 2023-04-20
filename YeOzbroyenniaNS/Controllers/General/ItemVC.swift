@@ -9,9 +9,12 @@ import UIKit
 
 class ItemVC: UIViewController {
     
+    //MARK: - Tracker
+    private var isItemExists: Bool?
+    
     //MARK: - Data
     public var item = Item(item: "", property: [Property]())
-    
+        
     //MARK: - UI Objects
     private let topSeparatorView: UIView = {
         let view = UIView()
@@ -64,8 +67,8 @@ class ItemVC: UIViewController {
     //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        // bg color
-        view.backgroundColor = .systemBackground
+        // chech item
+        isItemExists = CoreDataManager.shared.isItemExists(with: item.item)
         // configure nav bar
         configureNavBar()
         // add subviews
@@ -146,12 +149,27 @@ class ItemVC: UIViewController {
     
     //MARK: - Configure nav bar
     private func configureNavBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(addToFavoritesAction))
+        if isItemExists! {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(addOrDeleteFavoritesAction))
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(addOrDeleteFavoritesAction))
+        }
     }
     
     //MARK: - Action
-    @objc private func addToFavoritesAction() {
-        CoreDataManager.shared.addItem(with: item.item)
+    @objc private func addOrDeleteFavoritesAction() {
+        
+        let itemActualStatus = CoreDataManager.shared.isItemExists(with: item.item)
+        
+        if itemActualStatus {
+            print("Item exists. Deleting...")
+            CoreDataManager.shared.deleteItem(with: item.item)
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+        } else {
+            print("Item does not exist. Saving...")
+            CoreDataManager.shared.addItem(with: item.item)
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
+        }
     }
 
 }
@@ -162,6 +180,9 @@ extension ItemVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
+        
+        isItemExists = CoreDataManager.shared.isItemExists(with: item.item)
+        print("Item exists?: \(isItemExists)")
     }
 }
 
