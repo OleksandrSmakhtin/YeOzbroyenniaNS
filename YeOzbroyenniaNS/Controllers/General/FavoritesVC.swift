@@ -8,6 +8,9 @@
 import UIKit
 
 class FavoritesVC: UIViewController {
+    
+    //MARK: - Data
+    private var favorites = [String]()
 
     //MARK: - UI Objects
     private let topSeparatorView: UIView = {
@@ -26,6 +29,17 @@ class FavoritesVC: UIViewController {
         return table
     }()
     
+    private let isEmptyLbl: UILabel = {
+        let lbl = UILabel()
+        lbl.text = "Схоже, що у вас поки що немає обраних елементів"
+        lbl.textColor = .black
+        lbl.numberOfLines = 0
+        lbl.textAlignment = .center
+        lbl.font = UIFont.systemFont(ofSize: 20)
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
+    }()
+    
     private let bgImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "background")
@@ -41,6 +55,8 @@ class FavoritesVC: UIViewController {
         addSubviews()
         // apply constraints
         applyConstraints()
+        // apply delegates
+        applyTableDelegates()
 
     }
     
@@ -53,6 +69,7 @@ class FavoritesVC: UIViewController {
     //MARK: - Add subviews
     private func addSubviews() {
         view.addSubview(bgImageView)
+        view.addSubview(isEmptyLbl)
         view.addSubview(topSeparatorView)
         view.addSubview(listTable)
     }
@@ -67,6 +84,13 @@ class FavoritesVC: UIViewController {
             topSeparatorView.heightAnchor.constraint(equalToConstant: 1)
         ]
         
+        // isEmptyLbl constraints
+        let isEmptyLblConstraints = [
+            isEmptyLbl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            isEmptyLbl.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            isEmptyLbl.widthAnchor.constraint(equalToConstant: 250)
+        ]
+        
         // listTable constraints
         let listTableConstraints = [
             listTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -77,6 +101,7 @@ class FavoritesVC: UIViewController {
         
         // activate constraints
         NSLayoutConstraint.activate(topSeparatorViewConstraints)
+        NSLayoutConstraint.activate(isEmptyLblConstraints)
         NSLayoutConstraint.activate(listTableConstraints)
     }
     
@@ -91,5 +116,60 @@ extension FavoritesVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = true
+        
+        favorites = CoreDataManager.shared.fetchItems()
+        print(favorites)
+        DispatchQueue.main.async {
+            self.listTable.reloadData()
+        }
+        
+        if favorites.isEmpty {
+            isEmptyLbl.isHidden = false
+        } else {
+            isEmptyLbl.isHidden = true
+        }
+        
     }
+}
+
+
+//MARK: - UITableViewDelegate & DataSource
+extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
+    // apply table delegates
+    private func applyTableDelegates() {
+        listTable.delegate = self
+        listTable.dataSource = self
+    }
+    
+    // nubers of rows
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return favorites.count
+    }
+    
+    // cell for row
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier) as? ListCell else { return UITableViewCell() }
+        cell.configure(with: favorites[indexPath.row])
+        return cell
+    }
+    
+    // height for row
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    // did select row
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let itemTitle = favorites[indexPath.row]
+
+        let item = DataManager.shared.getItem(by: itemTitle)
+        
+        let vc = ItemVC()
+        vc.item = item
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
 }

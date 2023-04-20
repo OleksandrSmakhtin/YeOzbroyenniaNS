@@ -146,7 +146,12 @@ class ItemVC: UIViewController {
     
     //MARK: - Configure nav bar
     private func configureNavBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(addToFavoritesAction))
+    }
+    
+    //MARK: - Action
+    @objc private func addToFavoritesAction() {
+        CoreDataManager.shared.addItem(with: item.item)
     }
 
 }

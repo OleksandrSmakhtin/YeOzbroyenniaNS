@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44358A5329F1D7E80081E193 /* YeOzbroenniaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E4790729F1CF050034C51E /* YeOzbroenniaModel.xcdatamodeld */; };
+		44358A5429F1D7E90081E193 /* YeOzbroenniaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E4790729F1CF050034C51E /* YeOzbroenniaModel.xcdatamodeld */; };
 		44B0DA3729EC79C1007FD80F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B0DA3629EC79C1007FD80F /* AppDelegate.swift */; };
 		44B0DA3929EC79C1007FD80F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B0DA3829EC79C1007FD80F /* SceneDelegate.swift */; };
 		44B0DA4029EC79C1007FD80F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B0DA3F29EC79C1007FD80F /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 		44E478FE29F1944C0034C51E /* allItems.json in Resources */ = {isa = PBXBuildFile; fileRef = 44E478FD29F1944B0034C51E /* allItems.json */; };
 		44E4790029F199CE0034C51E /* SearchResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E478FF29F199CE0034C51E /* SearchResultsVC.swift */; };
 		44E4790329F1C5F70034C51E /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E4790229F1C5F70034C51E /* FavoritesVC.swift */; };
+		44E4790629F1CDE80034C51E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E4790529F1CDE80034C51E /* CoreDataManager.swift */; };
+		44E4790929F1CF050034C51E /* YeOzbroenniaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E4790729F1CF050034C51E /* YeOzbroenniaModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +95,8 @@
 		44E478FD29F1944B0034C51E /* allItems.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = allItems.json; sourceTree = "<group>"; };
 		44E478FF29F199CE0034C51E /* SearchResultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsVC.swift; sourceTree = "<group>"; };
 		44E4790229F1C5F70034C51E /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
+		44E4790529F1CDE80034C51E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		44E4790829F1CF050034C51E /* YeOzbroenniaModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = YeOzbroenniaModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,10 +152,7 @@
 				44B0DA6829EC7E0B007FD80F /* Models */,
 				44B0DA6729EC7E03007FD80F /* Views */,
 				44B0DA6629EC7DF8007FD80F /* Controllers */,
-				44B0DA3629EC79C1007FD80F /* AppDelegate.swift */,
-				44B0DA3829EC79C1007FD80F /* SceneDelegate.swift */,
-				44B0DA3F29EC79C1007FD80F /* Assets.xcassets */,
-				44B0DA4129EC79C1007FD80F /* LaunchScreen.storyboard */,
+				44E4790429F1CCD40034C51E /* Other */,
 				44B0DA4429EC79C1007FD80F /* Info.plist */,
 			);
 			path = YeOzbroyenniaNS;
@@ -201,6 +204,7 @@
 				44E478DE29EEAD700034C51E /* Subcategory.swift */,
 				44E478E329EEB04E0034C51E /* Element.swift */,
 				44E478F929F16D6C0034C51E /* Setting.swift */,
+				44E4790729F1CF050034C51E /* YeOzbroenniaModel.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -217,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				44E478E029EEADC80034C51E /* DataManager.swift */,
+				44E4790529F1CDE80034C51E /* CoreDataManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -252,6 +257,17 @@
 				44B0DA7229EC7F3B007FD80F /* SettingsVC.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		44E4790429F1CCD40034C51E /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				44B0DA3629EC79C1007FD80F /* AppDelegate.swift */,
+				44B0DA3829EC79C1007FD80F /* SceneDelegate.swift */,
+				44B0DA3F29EC79C1007FD80F /* Assets.xcassets */,
+				44B0DA4129EC79C1007FD80F /* LaunchScreen.storyboard */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,10 +407,12 @@
 				44E478F229EEDDAE0034C51E /* ItemVC.swift in Sources */,
 				44E478DB29EEA0370034C51E /* Item.swift in Sources */,
 				44B0DA7529EDC60A007FD80F /* SearchVC.swift in Sources */,
+				44E4790929F1CF050034C51E /* YeOzbroenniaModel.xcdatamodeld in Sources */,
 				44B0DA6F29EC7EE5007FD80F /* TechniqueVC.swift in Sources */,
 				44B0DA6A29EC7E43007FD80F /* TabBarController.swift in Sources */,
 				44B0DA7729EDD8CD007FD80F /* TempModel.swift in Sources */,
 				44E478F629EF02390034C51E /* ItemCell.swift in Sources */,
+				44E4790629F1CDE80034C51E /* CoreDataManager.swift in Sources */,
 				44B0DA6D29EC7E84007FD80F /* GunVC.swift in Sources */,
 				44E478E729EEC06A0034C51E /* ElementVC.swift in Sources */,
 				44E478FA29F16D6C0034C51E /* Setting.swift in Sources */,
@@ -416,6 +434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44358A5329F1D7E80081E193 /* YeOzbroenniaModel.xcdatamodeld in Sources */,
 				44B0DA4E29EC79C2007FD80F /* YeOzbroyenniaNSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +444,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44B0DA5A29EC79C2007FD80F /* YeOzbroyenniaNSUITestsLaunchTests.swift in Sources */,
+				44358A5429F1D7E90081E193 /* YeOzbroenniaModel.xcdatamodeld in Sources */,
 				44B0DA5829EC79C2007FD80F /* YeOzbroyenniaNSUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,8 +603,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -611,8 +631,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -742,6 +762,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		44E4790729F1CF050034C51E /* YeOzbroenniaModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				44E4790829F1CF050034C51E /* YeOzbroenniaModel.xcdatamodel */,
+			);
+			currentVersion = 44E4790829F1CF050034C51E /* YeOzbroenniaModel.xcdatamodel */;
+			path = YeOzbroenniaModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 44B0DA2B29EC79C1007FD80F /* Project object */;
 }
