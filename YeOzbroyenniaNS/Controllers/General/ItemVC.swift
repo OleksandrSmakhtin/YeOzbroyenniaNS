@@ -42,7 +42,7 @@ class ItemVC: UIViewController {
     
     private let circleContentView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = 15
         view.backgroundColor = UIColor(named: "tableColor")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -109,10 +109,10 @@ class ItemVC: UIViewController {
         
         // circleContentView constraints
         let circleContentViewConstraints = [
-            circleContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            circleContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            circleContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            circleContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             circleContentView.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 100),
-            circleContentView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            circleContentView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
         ]
         
         // itemTitle constraints
@@ -150,9 +150,9 @@ class ItemVC: UIViewController {
     //MARK: - Configure nav bar
     private func configureNavBar() {
         if isItemExists! {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(addOrDeleteFavoritesAction))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22)), style: .plain, target: self, action: #selector(addOrDeleteFavoritesAction))
         } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(addOrDeleteFavoritesAction))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22)), style: .plain, target: self, action: #selector(addOrDeleteFavoritesAction))
         }
     }
     
@@ -164,11 +164,11 @@ class ItemVC: UIViewController {
         if itemActualStatus {
             print("Item exists. Deleting...")
             CoreDataManager.shared.deleteItem(with: item.item)
-            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22))
         } else {
             print("Item does not exist. Saving...")
             CoreDataManager.shared.addItem(with: item.item)
-            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 22))
         }
     }
 

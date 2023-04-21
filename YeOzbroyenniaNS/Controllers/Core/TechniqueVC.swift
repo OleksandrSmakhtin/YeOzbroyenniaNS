@@ -25,7 +25,9 @@ class TechniqueVC: UIViewController {
         let table = UITableView()
         table.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
         table.showsVerticalScrollIndicator = false
+        table.layer.cornerRadius = 15
         table.backgroundColor = UIColor(named: "tableColor")
+        table.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
@@ -75,8 +77,8 @@ class TechniqueVC: UIViewController {
         
         // teqTable constraints
         let teqTableConstraints = [
-            teqTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            teqTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            teqTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            teqTable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             teqTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 20),
             teqTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ]

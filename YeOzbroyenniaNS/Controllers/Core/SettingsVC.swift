@@ -25,6 +25,8 @@ class SettingsVC: UIViewController {
         table.register(SettingCell.self, forCellReuseIdentifier: SettingCell.identifier)
         table.showsVerticalScrollIndicator = false
         table.isScrollEnabled = false
+        table.layer.cornerRadius = 15
+        table.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         table.backgroundColor = UIColor(named: "tableColor")
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
@@ -75,8 +77,8 @@ class SettingsVC: UIViewController {
         
         // // settingsTable constraints
         let settingsTableConstraints = [
-            settingsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            settingsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            settingsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            settingsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             settingsTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 20),
             settingsTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ]

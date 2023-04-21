@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		44358A5329F1D7E80081E193 /* YeOzbroenniaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E4790729F1CF050034C51E /* YeOzbroenniaModel.xcdatamodeld */; };
 		44358A5429F1D7E90081E193 /* YeOzbroenniaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E4790729F1CF050034C51E /* YeOzbroenniaModel.xcdatamodeld */; };
+		44358A5829F310560081E193 /* CustomTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44358A5729F310560081E193 /* CustomTabsView.swift */; };
 		44B0DA3729EC79C1007FD80F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B0DA3629EC79C1007FD80F /* AppDelegate.swift */; };
 		44B0DA3929EC79C1007FD80F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B0DA3829EC79C1007FD80F /* SceneDelegate.swift */; };
 		44B0DA4029EC79C1007FD80F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44B0DA3F29EC79C1007FD80F /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		44358A5729F310560081E193 /* CustomTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabsView.swift; sourceTree = "<group>"; };
 		44B0DA3329EC79C1007FD80F /* YeOzbroyenniaNS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YeOzbroyenniaNS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B0DA3629EC79C1007FD80F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44B0DA3829EC79C1007FD80F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				44E478F329EEEDFE0034C51E /* ListCell.swift */,
 				44E478F529EF02390034C51E /* ItemCell.swift */,
 				44E478FB29F174F20034C51E /* SettingCell.swift */,
+				44358A5729F310560081E193 /* CustomTabsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				44E478F629EF02390034C51E /* ItemCell.swift in Sources */,
 				44E4790629F1CDE80034C51E /* CoreDataManager.swift in Sources */,
 				44B0DA6D29EC7E84007FD80F /* GunVC.swift in Sources */,
+				44358A5829F310560081E193 /* CustomTabsView.swift in Sources */,
 				44E478E729EEC06A0034C51E /* ElementVC.swift in Sources */,
 				44E478FA29F16D6C0034C51E /* Setting.swift in Sources */,
 				44E478FC29F174F20034C51E /* SettingCell.swift in Sources */,
@@ -603,6 +607,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "єОзброєння";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
@@ -632,6 +637,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "єОзброєння";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;

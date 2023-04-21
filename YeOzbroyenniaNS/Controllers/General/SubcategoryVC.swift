@@ -25,6 +25,8 @@ class SubcategoryVC: UIViewController {
         table.backgroundColor = UIColor(named: "tableColor")
         table.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
         table.showsVerticalScrollIndicator = false
+        table.layer.cornerRadius = 15
+        table.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
@@ -74,10 +76,10 @@ class SubcategoryVC: UIViewController {
         
         // listTable constraints
         let listTableConstraints = [
-            listTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            listTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            listTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            listTable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             listTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 20),
-            listTable.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            listTable.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
         ]
         
         // activate constraints

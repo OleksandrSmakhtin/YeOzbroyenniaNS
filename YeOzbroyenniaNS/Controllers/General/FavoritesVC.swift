@@ -25,6 +25,8 @@ class FavoritesVC: UIViewController {
         table.backgroundColor = UIColor(named: "tableColor")
         table.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
         table.showsVerticalScrollIndicator = false
+        table.layer.cornerRadius = 15
+        table.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
@@ -93,10 +95,10 @@ class FavoritesVC: UIViewController {
         
         // listTable constraints
         let listTableConstraints = [
-            listTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            listTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            listTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            listTable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             listTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 20),
-            listTable.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            listTable.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
         ]
         
         // activate constraints
@@ -145,7 +147,6 @@ extension FavoritesVC {
         } else {
             isEmptyLbl.isHidden = true
         }
-        
     }
 }
 
@@ -184,24 +185,7 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
         vc.item = item
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    // title for delete
-//    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-//        return "Видалити"
-//    }
-    
-    // delete
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            let item = favorites[indexPath.row]
-//            CoreDataManager.shared.deleteItem(with: item)
-//            favorites = CoreDataManager.shared.fetchItems()
-//
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//
-//        }
-//    }
-    
+
     // trailing swipe action
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
@@ -230,6 +214,4 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
         return configuration
         
     }
-    
-    
 }

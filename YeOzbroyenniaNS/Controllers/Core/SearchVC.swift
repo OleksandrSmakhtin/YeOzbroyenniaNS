@@ -24,6 +24,8 @@ class SearchVC: UIViewController {
         let table = UITableView()
         table.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
         table.showsVerticalScrollIndicator = false
+        table.layer.cornerRadius = 15
+        table.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         table.backgroundColor = UIColor(named: "tableColor")
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
@@ -82,8 +84,8 @@ class SearchVC: UIViewController {
         
         // searchTable constraints
         let searchTableConstraints = [
-            searchTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            searchTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            searchTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            searchTable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             searchTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 20),
             searchTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ]

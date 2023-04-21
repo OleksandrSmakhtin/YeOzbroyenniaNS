@@ -17,7 +17,7 @@ class ItemCell: UITableViewCell {
         let lbl = UILabel()
         lbl.numberOfLines = 0
         lbl.textAlignment = .left
-        lbl.font = UIFont.systemFont(ofSize: 15)
+        lbl.font = UIFont.systemFont(ofSize: 16)
         lbl.textColor = .label
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
@@ -27,7 +27,7 @@ class ItemCell: UITableViewCell {
         let lbl = UILabel()
         lbl.numberOfLines = 0
         lbl.textAlignment = .right
-        lbl.font = UIFont.systemFont(ofSize: 15)
+        lbl.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         lbl.textColor = .label
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl

@@ -25,6 +25,8 @@ class GunVC: UIViewController {
         table.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
         table.showsVerticalScrollIndicator = false
         table.backgroundColor = UIColor(named: "tableColor")//UIColor(named: "tableColor")
+        table.layer.cornerRadius = 15
+        table.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
@@ -48,7 +50,7 @@ class GunVC: UIViewController {
         applyConstraints()
         // apply delegates
         applyTableDelegates()
-        tabBarController?.tabBar.backgroundColor = UIColor(named: "tableColor")//UIColor(named: "tableColor")
+        tabBarController?.tabBar.backgroundColor = .clear//UIColor(named: "tableColor")//UIColor(named: "tableColor")
 //        let json = DataPersistance.shared.encodeData()
 //        FileHandler.shared.saveJson(json: json)
         
@@ -79,8 +81,8 @@ class GunVC: UIViewController {
         
         // gunsTable constraints
         let gunsTableConstraints = [
-            gunsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            gunsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            gunsTable.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            gunsTable.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             gunsTable.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: 20),
             gunsTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ]

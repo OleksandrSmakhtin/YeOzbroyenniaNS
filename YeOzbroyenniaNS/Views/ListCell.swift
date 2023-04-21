@@ -16,6 +16,7 @@ class ListCell: UITableViewCell {
     private let titleLbl: UILabel = {
         let lbl = UILabel()
         lbl.textColor = .label
+        //lbl.font = UIFont.systemFont(ofSize: lbl.font.pointSize, weight: .medium)
         lbl.numberOfLines = 0
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
@@ -23,7 +24,7 @@ class ListCell: UITableViewCell {
     
     private let disclousereIndicator: UIImageView = {
         let imageView = UIImageView()
-        var image = UIImage(named: "arrow", in: nil, with: UIImage.SymbolConfiguration(pointSize: 4))
+        var image = UIImage(named: "arrow", in: nil, with: UIImage.SymbolConfiguration(pointSize: 4, weight: .medium))
         image = image?.withTintColor(.label, renderingMode: .automatic)
         imageView.image = image
         imageView.translatesAutoresizingMaskIntoConstraints = false
