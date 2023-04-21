@@ -600,6 +600,7 @@
 				DEVELOPMENT_TEAM = 3PN53MQP93;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YeOzbroyenniaNS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "єОзброєння";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
@@ -610,7 +611,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.smakhtin.yeOzbroenia.YeOzbroyenniaNS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.smakhtin.yeozbroenia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -628,6 +629,7 @@
 				DEVELOPMENT_TEAM = 3PN53MQP93;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YeOzbroyenniaNS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "єОзброєння";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
@@ -638,7 +640,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.smakhtin.yeOzbroenia.YeOzbroyenniaNS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.smakhtin.yeozbroenia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

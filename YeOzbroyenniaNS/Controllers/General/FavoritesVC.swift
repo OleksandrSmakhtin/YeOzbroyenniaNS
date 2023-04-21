@@ -31,7 +31,7 @@ class FavoritesVC: UIViewController {
     
     private let isEmptyLbl: UILabel = {
         let lbl = UILabel()
-        lbl.text = "Схоже, що у вас поки що немає обраних елементів"
+        lbl.text = "Схоже, що у вас поки що немає обраних"
         lbl.textColor = .black
         lbl.numberOfLines = 0
         lbl.textAlignment = .center
@@ -108,6 +108,23 @@ class FavoritesVC: UIViewController {
     //MARK: - Configure nav bar
     private func configureNavBar() {
         title = "Обрані"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .plain, target: self, action: #selector(editAction))
+    }
+    
+    @objc private func editAction() {
+        guard !favorites.isEmpty else { return }
+        
+        if listTable.isEditing {
+            listTable.isEditing = false
+            
+            listTable.reloadData()
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .plain, target: self, action: #selector(editAction))
+        } else {
+            listTable.isEditing = true
+            
+            listTable.reloadData()
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Готово", style: .plain, target: self, action: #selector(editAction))
+        }
     }
 }
 
@@ -161,15 +178,58 @@ extension FavoritesVC: UITableViewDelegate, UITableViewDataSource {
     // did select row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         let itemTitle = favorites[indexPath.row]
-
         let item = DataManager.shared.getItem(by: itemTitle)
-        
         let vc = ItemVC()
         vc.item = item
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    // title for delete
+//    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+//        return "Видалити"
+//    }
+    
+    // delete
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            let item = favorites[indexPath.row]
+//            CoreDataManager.shared.deleteItem(with: item)
+//            favorites = CoreDataManager.shared.fetchItems()
+//
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//
+//        }
+//    }
+    
+    // trailing swipe action
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { _, _, completionHandler in
+            // delete item from data
+            let item = self.favorites[indexPath.row]
+            CoreDataManager.shared.deleteItem(with: item)
+            self.favorites = CoreDataManager.shared.fetchItems()
+            
+            // delete row
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            // show emtyLbl if needed
+            if self.favorites.isEmpty {
+                self.isEmptyLbl.isHidden = false
+                self.listTable.isEditing = false
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .plain, target: self, action: #selector(self.editAction))
+            }
+            
+            completionHandler(true)
+        }
+        deleteAction.image = UIImage(systemName: "trash")
+        deleteAction.backgroundColor = .systemRed
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
         
     }
+    
     
 }
