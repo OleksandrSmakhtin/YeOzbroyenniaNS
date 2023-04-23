@@ -55,7 +55,6 @@ class GunVC: UIViewController {
 //        FileHandler.shared.saveJson(json: json)
         
     }
-    
     //MARK: - viewDidLayoutSubviews
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -98,7 +97,7 @@ class GunVC: UIViewController {
     private func configureNavBar() {
         let titleLbl: UILabel = {
             let lbl = UILabel()
-            lbl.text = "Зброя"
+            lbl.text = "єЗброя"
             lbl.textColor = .label
             lbl.font = UIFont.systemFont(ofSize: 35, weight: .bold)
             return lbl

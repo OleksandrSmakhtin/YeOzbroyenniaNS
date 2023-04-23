@@ -19,11 +19,11 @@ class DataManager {
         var result = Subcategory(category: "", subcategories: [""])
         guard let path = Bundle.main.path(forResource: "subcategories", ofType: "json") else { return result}
         do {
-            let jsonData = try Data(contentsOf: URL(filePath: path))
+            //let jsonData = try Data(contentsOf: URL(filePath: path))
+            let jsonData = try Data(contentsOf: URL(fileURLWithPath: path))
             
             let subcategories = try decoder.decode([Subcategory].self, from: jsonData)
             let selectedSubcategory = subcategories.first { $0.category == category }
-            //let selectedCategory = categories.first { $0.category == category }
             result = selectedSubcategory!
         } catch {
             print(error.localizedDescription)
@@ -36,7 +36,8 @@ class DataManager {
         var result = Element(subcategory: "", items: [""])
         guard let path = Bundle.main.path(forResource: "elements", ofType: "json") else { return result}
         do {
-            let jsonData = try Data(contentsOf: URL(filePath: path))
+            //let jsonData = try Data(contentsOf: URL(filePath: path))
+            let jsonData = try Data(contentsOf: URL(fileURLWithPath: path))
             
             let elements = try decoder.decode([Element].self, from: jsonData)
             let selectedElement = elements.first { $0.subcategory == subcategory }
@@ -52,7 +53,9 @@ class DataManager {
         var result = Item(item: "", property: [Property]())
         guard let path = Bundle.main.path(forResource: "allItems", ofType: "json") else { return result }
         do {
-            let jsonData = try Data(contentsOf: URL(filePath: path))
+            //let jsonData = try Data(contentsOf: URL(filePath: path))
+            let jsonData = try Data(contentsOf: URL(fileURLWithPath: path))
+            
             let items = try decoder.decode([Item].self, from: jsonData)
             let selectedItem = items.first { $0.item == item }
             if selectedItem != nil {
@@ -70,7 +73,9 @@ class DataManager {
         var results = [String]()
         guard let path = Bundle.main.path(forResource: "allItems", ofType: "json") else { return [String]() }
         do {
-            let jsonData = try Data(contentsOf: URL(filePath: path))
+            //let jsonData = try Data(contentsOf: URL(filePath: path))
+            let jsonData = try Data(contentsOf: URL(fileURLWithPath: path))
+            
             let items = try decoder.decode([Item].self, from: jsonData)
             let randomItems = items.shuffled().prefix(3)
             
@@ -105,7 +110,9 @@ class DataManager {
         var results = [String]()
         guard let path = Bundle.main.path(forResource: "allItems", ofType: "json") else { return [String]() }
         do {
-            let jsonData = try Data(contentsOf: URL(filePath: path))
+            //let jsonData = try Data(contentsOf: URL(filePath: path))
+            let jsonData = try Data(contentsOf: URL(fileURLWithPath: path))
+            
             let items = try decoder.decode([Item].self, from: jsonData)
             results = items.map { $0.item }
         } catch {

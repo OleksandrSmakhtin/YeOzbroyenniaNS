@@ -154,8 +154,17 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(vc, animated: true)
         case .rate:
             print("rate")
+        case .share:
+            let text = "Проверьте это приложение!"
+            let url = URL(string: "https://example.com")!
+            let vc = UIActivityViewController(activityItems: [text, url], applicationActivities: [])
+            navigationController?.present(vc, animated: true)
         case .thank:
             print("thank")
+            guard let url = URL(string: "https://send.monobank.ua/jar/2NZbqQQBPp") else { return }
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
         }
     }
     

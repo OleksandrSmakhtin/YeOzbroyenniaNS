@@ -93,7 +93,7 @@ class TechniqueVC: UIViewController {
     private func configureNavBar() {
         let titleLbl: UILabel = {
             let lbl = UILabel()
-            lbl.text = "Техніка"
+            lbl.text = "єТехніка"
             lbl.textColor = .label
             lbl.font = UIFont.systemFont(ofSize: 35, weight: .bold)
             return lbl

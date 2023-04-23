@@ -10,6 +10,7 @@ import Foundation
 enum SettingType {
     case favorite
     case rate
+    case share
     case thank
 }
 
@@ -25,7 +26,8 @@ class SettingsData {
     func getSettings() -> [Setting] {
         let settings = [
             Setting(type: .favorite, image: "heart", title: "Обране"),
-            Setting(type: .rate, image: "hand.thumbsup", title: "Оцінити додаток"),
+            //Setting(type: .rate, image: "hand.thumbsup", title: "Оцінити додаток"),
+            //Setting(type: .share, image: "square.and.arrow.up", title: "Поділитися додатком"),
             Setting(type: .thank, image: "hryvniasign", title: "Підтримати автора")
         ]
         
