@@ -148,6 +148,15 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
         let cellType = settings[indexPath.row].type
         
         switch cellType {
+        case .proposition:
+            guard let url = URL(string: "https://t.me/+PVWEj8dQDSk5Mjgy") else { return }
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+        case .about:
+            let vc = AboutVC()
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+            navigationController?.pushViewController(vc, animated: true)
         case .favorite:
             let vc = FavoritesVC()
             navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -161,10 +170,7 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
             navigationController?.present(vc, animated: true)
         case .thank:
             print("thank")
-            guard let url = URL(string: "https://send.monobank.ua/jar/2NZbqQQBPp") else { return }
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                }
+
         }
     }
     

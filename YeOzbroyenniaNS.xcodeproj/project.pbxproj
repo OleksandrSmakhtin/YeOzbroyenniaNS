@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4416DE7C29F6ECFC00C2DCAD /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4416DE7B29F6ECFC00C2DCAD /* AboutVC.swift */; };
 		44358A5329F1D7E80081E193 /* YeOzbroenniaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E4790729F1CF050034C51E /* YeOzbroenniaModel.xcdatamodeld */; };
 		44358A5429F1D7E90081E193 /* YeOzbroenniaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44E4790729F1CF050034C51E /* YeOzbroenniaModel.xcdatamodeld */; };
 		44358A5829F310560081E193 /* CustomTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44358A5729F310560081E193 /* CustomTabsView.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4416DE7B29F6ECFC00C2DCAD /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		44358A5729F310560081E193 /* CustomTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabsView.swift; sourceTree = "<group>"; };
 		44B0DA3329EC79C1007FD80F /* YeOzbroyenniaNS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YeOzbroyenniaNS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B0DA3629EC79C1007FD80F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				44E478F129EEDDAE0034C51E /* ItemVC.swift */,
 				44E478FF29F199CE0034C51E /* SearchResultsVC.swift */,
 				44E4790229F1C5F70034C51E /* FavoritesVC.swift */,
+				4416DE7B29F6ECFC00C2DCAD /* AboutVC.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				44B0DA7329EC7F3B007FD80F /* SettingsVC.swift in Sources */,
 				44E4790029F199CE0034C51E /* SearchResultsVC.swift in Sources */,
 				44E478DF29EEAD700034C51E /* Subcategory.swift in Sources */,
+				4416DE7C29F6ECFC00C2DCAD /* AboutVC.swift in Sources */,
 				44B0DA3729EC79C1007FD80F /* AppDelegate.swift in Sources */,
 				44B0DA3929EC79C1007FD80F /* SceneDelegate.swift in Sources */,
 				44E478E129EEADC80034C51E /* DataManager.swift in Sources */,
