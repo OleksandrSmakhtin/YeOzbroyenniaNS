@@ -49,7 +49,6 @@ class TechniqueVC: UIViewController {
         applyConstraints()
         // apply delegates
         applyTableDelegates()
-        
     }
     
     //MARK: - viewDidLayoutSubviews
