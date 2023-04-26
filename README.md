@@ -30,3 +30,15 @@ eZbroya - is an application designed to facilitate the process of selecting and 
 Завантажити застосунок з [App Store](https://apps.apple.com/app/%D1%94%D0%B7%D0%B1%D1%80%D0%BE%D1%8F/id6448219063?l)
 #### EN:
 Download the app from the [App Store](https://apps.apple.com/app/%D1%94%D0%B7%D0%B1%D1%80%D0%BE%D1%8F/id6448219063?l)
+
+## Технології/Technologies
+- Swift
+- UIKit
+- CoreData
+- Jsone
+
+
+
+
+
+
