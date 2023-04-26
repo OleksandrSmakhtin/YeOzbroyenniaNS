@@ -34,7 +34,6 @@ class SettingsData {
             //Setting(type: .share, image: "square.and.arrow.up", title: "Поділитися додатком"),
             //Setting(type: .thank, image: "hryvniasign", title: "Підтримати автора")
         ]
-        
         return settings
     }
 }
