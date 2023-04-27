@@ -51,6 +51,7 @@ class TechniqueVC: UIViewController {
         applyTableDelegates()
     }
     
+    
     //MARK: - viewDidLayoutSubviews
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
