@@ -37,8 +37,40 @@ Download the app from the [App Store](https://apps.apple.com/app/%D1%94%D0%B7%D0
 - CoreData
 - Jsone
 
+## Скріншоти/Screenshots
 
+### Зброя/Weapons
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/75438934/235240732-07d41bcf-d48b-4839-963e-1e07dba072e9.png" width="200" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="https://user-images.githubusercontent.com/75438934/235240745-3ae904bc-774e-41ce-8a3c-f01810e4fbbd.png" width="200" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="https://user-images.githubusercontent.com/75438934/235240759-a8552949-23ac-416c-9a42-9c218ff118e7.png" width="200" /> 
+</p>
 
+### Техніка/Technique
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/75438934/235244315-0117f919-7515-47a4-8a09-fd7401654060.png" width="200" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="https://user-images.githubusercontent.com/75438934/235244342-b580ba4d-114b-430e-84e0-112dc7731d54.png" width="200" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="https://user-images.githubusercontent.com/75438934/235244346-627d7696-0812-4436-ad50-49ae151cb245.png" width="200" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="https://user-images.githubusercontent.com/75438934/235244350-6b10aaa9-5456-4a8b-b12b-e774c203c869.png" width="200" /> 
+</p>
 
+### Пошук/Search
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/75438934/235244353-49b96598-833d-4195-9155-9699c761ae8b.png" width="200" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="https://user-images.githubusercontent.com/75438934/235244355-27b335b2-75b3-46fe-b5db-792d32bb27fc.png" width="200" />
+</p>
+
+### Налаштування/Settings
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/75438934/235244359-4a178bb6-cb92-419c-b0d7-3dc225ef065b.png" width="200" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="https://user-images.githubusercontent.com/75438934/235244363-e5fc08f3-c506-497a-a000-bc6dcddef4f3.png" width="200" />
+</p>
 
 
