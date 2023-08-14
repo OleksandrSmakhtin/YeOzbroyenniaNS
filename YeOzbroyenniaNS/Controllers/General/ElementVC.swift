@@ -10,7 +10,7 @@ import UIKit
 class ElementVC: UIViewController {
     
     //MARK: - Data
-    public var element = Element(subcategory: "", items: [""])
+    public var element = Element(subcategory: "", items: [""], imagePath: [""])
     
     //MARK: - UI Objects
     private let topSeparatorView: UIView = {
@@ -23,7 +23,7 @@ class ElementVC: UIViewController {
     private let listTable: UITableView = {
         let table = UITableView()
         table.backgroundColor = UIColor(named: "tableColor")
-        table.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
+        table.register(ListCellWithPhoto.self, forCellReuseIdentifier: ListCellWithPhoto.identifier)
         table.layer.cornerRadius = 15
         table.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         table.showsVerticalScrollIndicator = false
@@ -123,8 +123,8 @@ extension ElementVC: UITableViewDelegate, UITableViewDataSource {
     
     // cell for row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier) as? ListCell else { return UITableViewCell() }
-        cell.configure(with: element.items[indexPath.row])
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCellWithPhoto.identifier) as? ListCellWithPhoto else { return UITableViewCell() }
+        cell.configure(with: element.items[indexPath.row], image: element.imagePath[indexPath.row])
         return cell
     }
     
