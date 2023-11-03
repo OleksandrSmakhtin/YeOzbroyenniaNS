@@ -45,6 +45,7 @@ class DataManager {
         } catch {
             print(error.localizedDescription)
         }
+        
         return result
     }
     
