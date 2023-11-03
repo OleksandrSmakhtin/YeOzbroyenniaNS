@@ -7,10 +7,10 @@
 
 import UIKit
 
-class ListCell: UITableViewCell {
+class ListCellWithPhoto: UITableViewCell {
 
     //MARK: - Identifier
-    static let identifier = "ListCell"
+    static let identifier = "ListCellWithPhoto"
     
     //MARK: - UI Objects
     private let titleLbl: UILabel = {
@@ -20,6 +20,13 @@ class ListCell: UITableViewCell {
         lbl.numberOfLines = 0
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
+    }()
+    
+    private let zbroyaImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     private let disclousereIndicator: UIImageView = {
@@ -62,6 +69,7 @@ class ListCell: UITableViewCell {
         //contentView.addSubview(bottomSeparatorView)
         contentView.addSubview(titleLbl)
         contentView.addSubview(disclousereIndicator)
+        contentView.addSubview(zbroyaImage)
     }
     
     //MARK: - Apply constraints
@@ -74,9 +82,18 @@ class ListCell: UITableViewCell {
             bottomSeparatorView.heightAnchor.constraint(equalToConstant: 1)
         ]
         
+        //image
+        let zbroyaImageConstraints = [
+            zbroyaImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            zbroyaImage.trailingAnchor.constraint(equalTo: titleLbl.trailingAnchor, constant: -20),
+            zbroyaImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            zbroyaImage.heightAnchor.constraint(equalToConstant: 60),
+            zbroyaImage.widthAnchor.constraint(equalToConstant: 100)
+        ]
+        
         // titleLbl constraints
         let titleLblConstraints = [
-            titleLbl.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            titleLbl.leadingAnchor.constraint(equalTo: zbroyaImage.leadingAnchor, constant: 20),
             titleLbl.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -50),
             titleLbl.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ]
@@ -93,11 +110,13 @@ class ListCell: UITableViewCell {
         //NSLayoutConstraint.activate(bottomSeparatorViewConstraints)
         NSLayoutConstraint.activate(titleLblConstraints)
         NSLayoutConstraint.activate(disclousereIndicatorConstraints)
+        NSLayoutConstraint.activate(zbroyaImageConstraints)
     }
 
     //MARK: - Configure
-    public func configure(with title: String) {
+    public func configure(with title: String , image: String) {
         titleLbl.text = title
+        zbroyaImage.image = UIImage(named: image)
     }
     
 }

@@ -33,7 +33,7 @@ class DataManager {
     
     //MARK: - Elements
     func getElements(by subcategory: String) -> Element {
-        var result = Element(subcategory: "", items: [""])
+        var result = Element(subcategory: "", items: [""], imagePath: [""])
         guard let path = Bundle.main.path(forResource: "elements", ofType: "json") else { return result}
         do {
             //let jsonData = try Data(contentsOf: URL(filePath: path))
